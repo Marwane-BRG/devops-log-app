@@ -28,5 +28,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: MarwaneBRG/devops-log-app:latest
+          tags: marwanebrg/devops-log-app:latest
 
