@@ -1,0 +1,29 @@
+---
+- name: Déployer l'application log-app sur EC2
+  hosts: devops
+  become: yes
+
+  tasks:
+    - name: Mettre à jour les paquets
+      apt:
+        update_cache: yes
+
+    - name: Installer Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: S'assurer que Docker est lancé
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Lancer le conteneur log-app
+      docker_container:
+        name: log-app
+        image: marwanebrg/devops-log-app:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "5000:5000"

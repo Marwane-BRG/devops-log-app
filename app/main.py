@@ -8,7 +8,8 @@ print("!!!!!! demarrage du script Python log-generator !!!!!!")
 
 fake = Faker()
 
-client = MongoClient("mongodb://mongo:27017/")
+"""client = MongoClient("mongodb://mongo:27017/")"""
+client = MongoClient(os.environ.get("MONGO_HOST"), 27017)
 db = client["logdb"]
 collection = db["logs"]
 
